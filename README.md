@@ -12,6 +12,8 @@ Docker requirement, or application backend.
 If Open WebUI feels too crowded and you just want a lightweight chat frontend
 for model engines you start and stop yourself, Portlet Chat is built for that workflow.
 
+![Portlet Chat in dark mode, showing the model selector, chat controls, and message composer](docs/images/hero.png)
+
 ## Who is it for?
 
 - You run models through different engines, such as MLX-LM, llama.cpp, Ollama,
