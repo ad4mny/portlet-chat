@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Portlet Chat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="markdown.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="./">Portlet <span>Chat</span></a>
+    <nav aria-label="Chat controls">
+      <button id="history" type="button">Chats</button>
+      <button id="new-chat" type="button">New chat</button>
+      <button id="settings" type="button">Endpoints</button>
+    </nav>
+  </header>
+  <main>
+    <div class="model-bar">
+      <label class="sr-only" for="model">Model</label>
+      <select id="model"><option value="">Add an endpoint to get started</option></select>
+      <button id="refresh" type="button">Refresh</button>
+    </div>
+    <p id="status" role="status"></p>
+    <section id="messages" aria-label="Conversation"></section>
+    <div id="welcome">
+      <span class="eyebrow">YOUR MODELS. YOUR SPACE.</span>
+      <h1>A small window<br>to your models.</h1>
+      <p>Connect a server. Choose a model. Start talking.</p>
+      <button id="connect" type="button">Connect an endpoint <span aria-hidden="true">↗</span></button>
+    </div>
+  </main>
+  <footer>
+    <form id="composer">
+      <label class="sr-only" for="prompt">Message</label>
+      <textarea id="prompt" rows="2" placeholder="Ask something…" required></textarea>
+      <div class="compose-actions">
+        <span>Enter to send · Shift + Enter for a new line</span>
+        <button id="stop" type="button" hidden>Stop</button>
+        <button id="send" type="submit" disabled>Send <span aria-hidden="true">↑</span></button>
+      </div>
+    </form>
+    <p class="footnote">Direct to your endpoint. Saved in this browser.</p>
+  </footer>
+  <dialog id="history-dialog" aria-labelledby="history-title">
+    <div class="dialog-heading"><h2 id="history-title">Chats</h2><button id="close-history" type="button">Close</button></div>
+    <div id="chat-list" aria-label="Saved chats"></div>
+  </dialog>
+  <dialog id="endpoint-dialog" aria-labelledby="endpoint-title">
+    <div class="dialog-heading">
+      <h2 id="endpoint-title">Endpoints</h2>
+      <button id="close-settings" type="button" aria-label="Close endpoints">Close</button>
+    </div>
+    <p class="muted">Save each server address once. Refresh models when a server changes.</p>
+    <ul id="endpoint-list"></ul>
+    <button id="add-endpoint" type="button">Add another endpoint</button>
+    <form id="endpoint-form">
+      <label for="endpoint-name">Name</label>
+      <input id="endpoint-name" placeholder="Local server" maxlength="80" required>
+      <label for="endpoint-url">Base URL</label>
+      <input id="endpoint-url" type="url" placeholder="http://localhost:8080/v1" required>
+      <label for="endpoint-key">API key <span class="muted">(optional, kept only until reload)</span></label>
+      <input id="endpoint-key" type="password" autocomplete="off">
+      <p id="endpoint-error" role="alert"></p>
+      <button type="submit" class="primary">Save endpoint</button>
+    </form>
+    <p class="muted small">Your server must allow this page’s origin through CORS.</p>
+  </dialog>
+</body>
+</html>
